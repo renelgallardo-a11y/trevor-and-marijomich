@@ -71,27 +71,33 @@ automatically. No other file needs to change.
 1. Create a free project at <https://supabase.com>.
 2. Open **SQL Editor → New query**, paste the whole of `supabase/schema.sql`
    and press **Run**.
-3. In that file, replace `YOUR-EMAIL-HERE` in the `admins` table with your own
-   email address, then re-run just that statement:
+3. Add yourself as the admin:
    ```sql
-   insert into public.admins (email) values ('you@example.com')
+   insert into public.admins (email) values ('admin@trevorandmich.com')
    on conflict (email) do nothing;
    ```
-4. **Authentication → Users → Add user** and create an account with that same
-   email and a password. This is the account you use on the admin page.
+4. **Authentication → Users → Add user** and create an account with
+   `admin@trevorandmich.com` and a password of your choosing. Tick
+   **Auto Confirm User** so you can sign in straight away. This is the account
+   you use on `admin.html`.
 5. **Project Settings → API** and copy:
    * **Project URL** → `supabaseUrl`
-   * **anon public** key → `supabaseAnonKey`
+   * **publishable** key → `supabaseAnonKey`
 
    Paste both into `js/config.js`:
    ```js
    supabaseUrl: 'https://xxxxxxxxxxxx.supabase.co',
-   supabaseAnonKey: 'eyJhbGciOi...',
+   supabaseAnonKey: 'sb_publishable_...',
    ```
 
-> Never paste the `service_role` key into this project. It bypasses every
-> security rule and must stay on a server. The `anon` key is designed to be
-> public — the RLS rules in `schema.sql` are what protect the guest data.
+> Never paste the **secret** key (`sb_secret_…`) into this project. It
+> bypasses every security rule and must stay on a server. The publishable key
+> is designed to be public — the RLS rules in `schema.sql` are what protect
+> the guest data.
+
+If anything ever looks wrong with the tables or policies, run
+`supabase/check-and-repair.sql`. It prints the current setup, re-applies
+anything missing, and clears any test rows.
 
 Commit and push afterwards, and the live site picks it up.
 

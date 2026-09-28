@@ -15,7 +15,6 @@ const dashboardView = $('#dashboard-view');
 const loginForm = $('#login-form');
 const createForm = $('#create-form');
 const loginError = $('#login-error');
-const loginHint = $('#login-hint');
 const createMessage = $('#create-message');
 const invitationsBody = $('#invitations-body');
 const invitationsEmpty = $('#invitations-empty');
@@ -82,18 +81,7 @@ function describeBackend() {
   if (STORE.isSupabaseConfigured) {
     note.textContent = 'Connected to Supabase. Links, replies and messages are shared across every device.';
   } else {
-    note.textContent = 'Preview mode: data is stored only in this browser. Add your Supabase keys in js/config.js to go live.';
-  }
-
-  if (!STORE.isSupabaseConfigured) {
-    loginHint.hidden = false;
-    loginHint.innerHTML =
-      'Supabase is not connected yet, so sign in with any email and the passcode ' +
-      '<code>' + (CONFIG.localAdminPasscode || 'change-me') + '</code> ' +
-      '(you can change it in <code>js/config.js</code>). ' +
-      'This sign-in only unlocks the page in this browser &mdash; it is not real security. ' +
-      'Once Supabase is connected this form uses a real Supabase account instead.';
-    $('#admin-username').value = 'admin@trevorandmich.com';
+    note.textContent = 'Supabase is not connected yet, so nothing is being shared between devices.';
   }
 }
 

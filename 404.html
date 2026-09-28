@@ -23,18 +23,24 @@
 <body>
 <p>Taking you to the invitation…</p>
 <script>
-  /* GitHub Pages has no real rewrites, so /invite/<token> lands here.
-     We move the token into the query string and hand over to index.html,
-     which then loads the right guest name. The address bar is cleaned up
-     so the guest never sees the token twice. */
-  (function () {
-    var parts = window.location.pathname.split('/').filter(Boolean);
-    var token = '';
-    var inviteIndex = parts.indexOf('invite');
-    if (inviteIndex !== -1 && parts[inviteIndex + 1]) token = parts[inviteIndex + 1];
+  /* GitHub Pages has no URL rewrites, so an invitation link such as
+     /trevor-and-marijomich/invite/abc123 is served this 404 page instead.
+     We pull the token out and forward to the invitation itself.
 
-    var target = './' + (token ? '?token=' + encodeURIComponent(token) : '');
-    window.location.replace(target);
+     The path has to be rebuilt carefully. A relative "./" here would resolve
+     against /invite/ and land back on a 404, so the /invite/<token> segment
+     is stripped and the real site folder is kept. */
+  (function () {
+    var path = window.location.pathname;
+    var match = path.match(/^(.*)\/invite\/([^/]+)\/?$/);
+
+    if (match) {
+      window.location.replace(match[1] + '/?token=' + encodeURIComponent(match[2]));
+      return;
+    }
+
+    /* not an invitation link - just send the visitor to the site root */
+    window.location.replace(path.replace(/[^/]*$/, '') || '/');
   }());
 </script>
 </body>
