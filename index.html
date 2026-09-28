@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2f3a26">
+  <meta name="description" content="Trevor George White and Marijomich Denniece Torres — Monday, 04 January 2027, 4:00 PM at Hacienda Solange Indang, EMV Flower Farm.">
+  <title>Trevor &amp; Marijomich | 04 . 01 . 2027</title>
+
+  <link rel="preload" href="assets/fonts/script.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/fonts/cover-script.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/fonts/sans.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/aos.css">
+</head>
+<body class="welcome-open">
+
+  <!-- Thin loading bar that fills while the photos and fonts arrive -->
+  <div class="page-loader" id="page-loader" aria-hidden="true"><span></span></div>
+
+  <!-- ===================================================================
+       PERSONALISED WELCOME SCREEN
+       Modelled on the original floral envelope cover. The envelope, the
+       "Click to Open..." line and the backdrop all open the invitation.
+       The guest's name and reserved seats are filled in by script.js from
+       the link they opened ( /invite/<token> ).
+       =================================================================== -->
+  <div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div class="welcome__background" aria-hidden="true"></div>
+    <div class="welcome__shade" aria-hidden="true"></div>
+    <div class="welcome__content">
+      <!-- the guest is greeted first, above the envelope -->
+      <p class="welcome__dear anim-in" style="--in-delay:120ms">Dear,</p>
+      <h1 class="anim-in" id="welcome-title" style="--in-delay:200ms">Invited Person</h1>
+      <p class="welcome__seats anim-in" id="welcome-seats" style="--in-delay:290ms">( We have reserved 2 seats for you )</p>
+      <p class="welcome__note anim-in" id="welcome-note" hidden>This invitation is no longer active.</p>
+
+      <!-- The whole envelope is the button: clicking it opens the invitation -->
+      <button class="welcome__envelope anim-in" style="--in-delay:400ms" type="button" data-open-invitation aria-label="Open the wedding invitation">
+        <img class="welcome__floral welcome__floral--trailing" src="assets/images/cover-trailing-flowers.png" alt="">
+        <img class="welcome__floral welcome__floral--bouquet" src="assets/images/cover-bouquet.png" alt="">
+        <img class="welcome__floral welcome__floral--horizontal" src="assets/images/cover-horizontal-flowers.png" alt="">
+        <img class="welcome__floral welcome__floral--flower" src="assets/images/cover-flower.png" alt="">
+        <img class="welcome__floral welcome__floral--bow" src="assets/images/cover-bow.png" alt="">
+
+        <span class="welcome__env" aria-hidden="true">
+          <!-- the cream card that rises out once the flap is up -->
+          <span class="welcome__env-letter">
+            <b>Trevor</b><i>&amp;</i><b>Marijomich</b>
+            <em>04 &middot; 01 &middot; 2027</em>
+          </span>
+
+          <!-- the body, with the flap area cut away so it can really open -->
+          <img class="welcome__env-face" src="assets/images/cover-envelope.png" alt="">
+
+          <!-- the flap: the same artwork clipped to the closed triangle,
+               hinged along the top edge so it swings up and back -->
+          <span class="welcome__env-flap"></span>
+
+          <img class="welcome__seal" src="assets/images/cover-wax-seal.png" alt="">
+        </span>
+      </button>
+
+      <p class="welcome__script anim-in" style="--in-delay:820ms">Join us for a Special<br>Celebration</p>
+
+      <!-- the reference uses this line as the invitation's call to action -->
+      <button class="welcome__tap anim-in" style="--in-delay:950ms" type="button" data-open-invitation>Click to Open...</button>
+    </div>
+  </div>
+
+  <div class="petal-field" id="petal-field" aria-hidden="true"></div>
+
+  <main id="main-content">
+
+    <!-- ============================ HERO ============================ -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero__background" aria-hidden="true"></div>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow" data-aos="fade-up" data-aos-duration="1000">Save the date</p>
+        <h1 id="hero-title" class="hero__names" data-aos="zoom-in" data-aos-delay="200" data-aos-easing="ease-out-back">Trevor <span>&amp;</span> Marijomich</h1>
+        <p class="hero__date" data-aos="zoom-out" data-aos-delay="400"><time datetime="2027-01-04">04 . 01 . 2027</time></p>
+      </div>
+      <a class="hero__scroll" href="#story" data-aos="fade-up" data-aos-delay="700" data-aos-duration="1200"><span>Swipe Up</span><i aria-hidden="true">&#9651;</i></a>
+    </section>
+
+    <!-- ============================ STORY ============================ -->
+    <section class="story framed-section" id="story" aria-labelledby="story-title">
+      <div class="section-ornament section-ornament--top"><img src="assets/images/cover-horizontal-flowers.png" alt=""></div>
+      <div class="section-ornament section-ornament--bottom"><img src="assets/images/cover-horizontal-flowers.png" alt=""></div>
+      <div class="section-flower section-flower--top-left"><img src="assets/images/cover-trailing-flowers.png" alt=""></div>
+      <div class="section-flower section-flower--bottom-right"><img src="assets/images/cover-bouquet.png" alt=""></div>
+      <div class="section-flower section-flower--top-left-small"><img src="assets/images/cover-flower.png" alt=""></div>
+      <div class="section-flower section-flower--bottom-right-small"><img src="assets/images/cover-bow.png" alt=""></div>
+      <div class="story__frame" aria-hidden="true"></div>
+
+      <div class="story__content">
+        <h2 id="story-title" class="sr-only">Our invitation</h2>
+        <p class="story__intro" data-aos="zoom-out-up">
+          Together with our families, we joyfully invite you<br>
+          to join us as we say our vows and celebrate<br>
+          the beginning of our forever.<br><br>
+          By the grace of God &amp; with the love of our family,<br>
+          we gladly welcome you to our wedding day.
+        </p>
+
+        <article class="person-card" data-aos="zoom-out-left" data-aos-delay="150">
+          <h3>Trevor George White</h3>
+          <p>Son of<br>Mr. Peter White<br>Mrs. Sharon White</p>
+        </article>
+
+        <div class="story__amp" data-aos="zoom-in" data-aos-delay="300" aria-hidden="true">&amp;</div>
+
+        <article class="person-card" data-aos="zoom-out-right" data-aos-delay="450">
+          <h3>Marijomich Denniece Torres</h3>
+          <p>Daughter of<br>Mr. Allan Mucsin<br>Mrs. Hilda Guillermo</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ EVENT ============================ -->
+    <section class="event" id="event" aria-labelledby="event-title">
+      <div class="event__background" aria-hidden="true"></div>
+      <div class="event__frame event__frame--outer" aria-hidden="true"></div>
+      <div class="event__frame event__frame--inner" aria-hidden="true"></div>
+
+      <div class="event__content">
+        <h2 id="event-title" data-aos="zoom-out-down">Save the Date</h2>
+        <p class="event__datetime" data-aos="zoom-in-up" data-aos-delay="200">
+          <strong>Monday, 04 January 2027</strong><br>
+          <strong>04:00 PM</strong>
+        </p>
+        <img class="event__divider" src="assets/images/hero-rings.svg" data-aos="zoom-in" data-aos-delay="400" alt="">
+
+        <p class="countdown__label" data-aos="fade-up" data-aos-delay="300">Countdown to <strong>our Wedding</strong></p>
+        <div class="countdown" aria-label="Countdown to the wedding day">
+          <div data-aos="zoom-out-up"><strong id="countdown-days">&mdash;</strong><span>Days</span></div>
+          <div data-aos="zoom-out-up" data-aos-delay="100"><strong id="countdown-hours">&mdash;</strong><span>Hours</span></div>
+          <div data-aos="zoom-out-up" data-aos-delay="200"><strong id="countdown-minutes">&mdash;</strong><span>Minutes</span></div>
+          <div data-aos="zoom-out-up" data-aos-delay="300"><strong id="countdown-seconds">&mdash;</strong><span>Seconds</span></div>
+        </div>
+
+        <a class="button button--outline" data-aos="zoom-in-up" data-aos-delay="500" href="https://www.google.com/calendar/event?action=TEMPLATE&amp;text=Trevor+%26+Marijomich+-+Wedding+Day&amp;dates=20270104T080000Z/20270104T140000Z&amp;details=We+would+love+to+celebrate+our+wedding+with+you.&amp;location=Hacienda+Solange+Indang%2C+EMV+Flower+Farm" target="_blank" rel="noopener">
+          <span aria-hidden="true">&#9635;</span> Save the Date
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================ LOCATION ============================ -->
+    <section class="location" id="location" aria-labelledby="location-title">
+      <div class="location__background" aria-hidden="true"></div>
+      <div class="location__shade" aria-hidden="true"></div>
+
+      <div class="location__content">
+        <h2 id="location-title" data-aos="zoom-out-down">Location</h2>
+        <p class="location__venue" data-aos="zoom-out-up" data-aos-delay="150">
+          <strong>Hacienda Solange Indang</strong><br>
+          <span>@ EMV Flower Farm</span>
+        </p>
+
+        <figure class="location__card" data-aos="zoom-in" data-aos-delay="300" data-aos-easing="ease-out-back">
+          <img src="assets/images/venue.jpg" alt="Hacienda Solange Indang at EMV Flower Farm">
+          <figcaption>Dream it, we make it happen</figcaption>
+        </figure>
+
+        <p class="location__maps-label" data-aos="fade-up" data-aos-delay="400">Maps</p>
+        <a class="location__map" data-aos="zoom-out-up" data-aos-delay="500" href="https://www.google.com/maps/search/?api=1&amp;query=Hacienda+Solange+Indang+EMV+Flower+Farm" target="_blank" rel="noopener" aria-label="Open the wedding location in Google Maps">
+          <img src="assets/images/location-map.png" alt="Map showing Hacienda Solange Indang at EMV Flower Farm" loading="lazy">
+        </a>
+
+        <a class="button button--outline" data-aos="zoom-in-up" data-aos-delay="650" href="https://www.google.com/maps/search/?api=1&amp;query=Hacienda+Solange+Indang+EMV+Flower+Farm" target="_blank" rel="noopener">
+          <span aria-hidden="true">&#128506;</span> Open GMAPS
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================ DETAILS ============================ -->
+    <section class="details framed-section" id="details" aria-labelledby="details-title">
+      <div class="section-ornament section-ornament--top"><img src="assets/images/cover-horizontal-flowers.png" alt=""></div>
+      <div class="section-ornament section-ornament--bottom"><img src="assets/images/cover-horizontal-flowers.png" alt=""></div>
+      <div class="section-flower section-flower--top-left"><img src="assets/images/cover-trailing-flowers.png" alt=""></div>
+      <div class="section-flower section-flower--bottom-right"><img src="assets/images/cover-bouquet.png" alt=""></div>
+      <div class="section-flower section-flower--top-left-small"><img src="assets/images/cover-flower.png" alt=""></div>
+      <div class="section-flower section-flower--bottom-right-small"><img src="assets/images/cover-bow.png" alt=""></div>
+      <div class="details__texture" aria-hidden="true"></div>
+
+      <div class="details__content">
+        <h2 id="details-title" data-aos="zoom-out-down">The Details</h2>
+
+        <div class="detail-block" data-aos="zoom-out-up">
+          <h3>Dresscode</h3>
+          <img class="detail-block__attire" src="assets/images/attire-couple.png" alt="Suggested attire for the wedding">
+          <div class="dress-grid">
+            <p data-aos="fade-right" data-aos-delay="200"><strong>For Women</strong><br>Long / Cocktail Dress<br>(Olive &amp; Sage Shades)</p>
+            <p data-aos="fade-left" data-aos-delay="300"><strong>For Men:</strong><br>Smart Casual<br>Shades Of Green</p>
+          </div>
+        </div>
+
+        <div class="detail-block detail-block--attire" data-aos="zoom-out-up" data-aos-delay="200">
+          <h3>Attire Guide</h3>
+          <p>
+            Please welcome in your <strong>Smart Casual Attire</strong><br>
+            We encourage you to dress according to<br>
+            our colour motif
+          </p>
+          <ul class="motif-colors" data-aos="zoom-in" data-aos-delay="400" data-aos-easing="ease-out-back">
+            <li data-aos="zoom-in" data-aos-delay="0"><i></i><span>Forest</span></li>
+            <li data-aos="zoom-in" data-aos-delay="100"><i></i><span>Deep Olive</span></li>
+            <li data-aos="zoom-in" data-aos-delay="200"><i></i><span>Sage</span></li>
+            <li data-aos="zoom-in" data-aos-delay="300"><i></i><span>Moss</span></li>
+          </ul>
+        </div>
+
+        <p class="details__note" data-aos="fade-up" data-aos-delay="250">
+          <strong>Note:</strong><br>
+          The ceremony will commence at 4:00 PM.<br>
+          Please be on time.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================ GALLERY ============================ -->
+    <section class="gallery" id="gallery" aria-labelledby="gallery-title">
+      <h2 id="gallery-title" class="sr-only">Our gallery</h2>
+      <div class="gallery__grid">
+        <button class="gallery__item gallery__item--1" type="button" data-gallery-index="0" data-aos="zoom-out" data-aos-duration="900"><img src="assets/images/gallery-01.jpg" alt="Trevor and Marijomich gallery photo 1" loading="lazy"></button>
+        <button class="gallery__item gallery__item--2" type="button" data-gallery-index="1" data-aos="zoom-out" data-aos-delay="80" data-aos-duration="900"><img src="assets/images/gallery-02.jpg" alt="Trevor and Marijomich gallery photo 2" loading="lazy"></button>
+        <button class="gallery__item gallery__item--3" type="button" data-gallery-index="2" data-aos="zoom-in" data-aos-delay="160" data-aos-duration="900"><img src="assets/images/gallery-03.jpg" alt="Trevor and Marijomich gallery photo 3" loading="lazy"></button>
+        <button class="gallery__item gallery__item--4" type="button" data-gallery-index="3" data-aos="zoom-out" data-aos-delay="240" data-aos-duration="900"><img src="assets/images/gallery-04.jpg" alt="Trevor and Marijomich gallery photo 4" loading="lazy"></button>
+        <button class="gallery__item gallery__item--5" type="button" data-gallery-index="4" data-aos="zoom-in" data-aos-delay="320" data-aos-duration="900"><img src="assets/images/gallery-05.jpg" alt="Trevor and Marijomich gallery photo 5" loading="lazy"></button>
+        <button class="gallery__item gallery__item--6" type="button" data-gallery-index="5" data-aos="zoom-out" data-aos-delay="400" data-aos-duration="900"><img src="assets/images/gallery-06.jpg" alt="Trevor and Marijomich gallery photo 6" loading="lazy"></button>
+        <button class="gallery__item gallery__item--7" type="button" data-gallery-index="6" data-aos="zoom-in" data-aos-delay="480" data-aos-duration="900"><img src="assets/images/gallery-07.jpg" alt="Trevor and Marijomich gallery photo 7" loading="lazy"></button>
+        <button class="gallery__item gallery__item--8" type="button" data-gallery-index="7" data-aos="zoom-out" data-aos-delay="560" data-aos-duration="900"><img src="assets/images/gallery-08.jpg" alt="Trevor and Marijomich gallery photo 8" loading="lazy"></button>
+        <button class="gallery__item gallery__item--9" type="button" data-gallery-index="8" data-aos="zoom-in" data-aos-delay="640" data-aos-duration="900"><img src="assets/images/gallery-09.jpg" alt="Trevor and Marijomich gallery photo 9" loading="lazy"></button>
+        <button class="gallery__item gallery__item--10" type="button" data-gallery-index="9" data-aos="zoom-out" data-aos-delay="720" data-aos-duration="900"><img src="assets/images/gallery-10.jpg" alt="Trevor and Marijomich gallery photo 10" loading="lazy"></button>
+        <button class="gallery__item gallery__item--11" type="button" data-gallery-index="10" data-aos="zoom-in" data-aos-delay="800" data-aos-duration="900"><img src="assets/images/gallery-11.jpg" alt="Trevor and Marijomich gallery photo 11" loading="lazy"></button>
+        <button class="gallery__item gallery__item--12" type="button" data-gallery-index="11" data-aos="zoom-out" data-aos-delay="880" data-aos-duration="900"><img src="assets/images/gallery-12.jpg" alt="Trevor and Marijomich gallery photo 12" loading="lazy"></button>
+        <button class="gallery__item gallery__item--13" type="button" data-gallery-index="12" data-aos="zoom-in" data-aos-delay="960" data-aos-duration="900"><img src="assets/images/gallery-13.jpg" alt="Trevor and Marijomich gallery photo 13" loading="lazy"></button>
+        <button class="gallery__item gallery__item--14" type="button" data-gallery-index="13" data-aos="zoom-out" data-aos-delay="1040" data-aos-duration="900"><img src="assets/images/gallery-14.jpg" alt="Trevor and Marijomich gallery photo 14" loading="lazy"></button>
+        <button class="gallery__item gallery__item--15" type="button" data-gallery-index="14" data-aos="zoom-in" data-aos-delay="1120" data-aos-duration="900"><img src="assets/images/gallery-15.jpg" alt="Trevor and Marijomich gallery photo 15" loading="lazy"></button>
+      </div>
+    </section>
+
+    <!-- ============================ ENTOURAGE ============================ -->
+    <section class="entourage framed-section" id="entourage" aria-labelledby="entourage-title">
+      <div class="section-ornament section-ornament--top"><img src="assets/images/cover-horizontal-flowers.png" alt=""></div>
+      <div class="section-ornament section-ornament--bottom"><img src="assets/images/cover-horizontal-flowers.png" alt=""></div>
+      <div class="section-flower section-flower--top-left"><img src="assets/images/cover-trailing-flowers.png" alt=""></div>
+      <div class="section-flower section-flower--bottom-right"><img src="assets/images/cover-bouquet.png" alt=""></div>
+      <div class="section-flower section-flower--top-left-small"><img src="assets/images/cover-flower.png" alt=""></div>
+      <div class="section-flower section-flower--bottom-right-small"><img src="assets/images/cover-bow.png" alt=""></div>
+      <div class="entourage__texture" aria-hidden="true"></div>
+
+      <div class="entourage__content">
+        <h2 id="entourage-title" data-aos="zoom-out-down">Entourage</h2>
+
+        <div class="role-block" data-aos="zoom-out-left" data-aos-delay="100"><h3>Parents of the Groom</h3><p>Mr. Peter White<br>Mrs. Sharon White</p></div>
+        <div class="role-block" data-aos="zoom-out-right" data-aos-delay="200"><h3>Parents of the Bride</h3><p>Mr. Allan Mucsin<br>Mrs. Hilda Guillermo</p></div>
+
+        <h3 class="entourage__subheading" data-aos="fade-up" data-aos-delay="300">Principal Sponsors</h3>
+        <div class="sponsor-columns">
+          <p data-aos="zoom-out-left" data-aos-delay="350">Ariel Torres<br>Leonardo Gozo<br>Robert Williams<br>Charles Leonard Gozo<br>Mike Cervantes</p>
+          <p data-aos="zoom-out-right" data-aos-delay="450">JR Sarmiento<br>Eduardo Cruzado Jr.<br>Joy Torres Calasin<br>Dr. Charito Gozo<br>Rosalina Williams</p>
+        </div>
+
+        <div class="role-columns">
+          <div class="role-block" data-aos="zoom-out-left" data-aos-delay="200"><h3>Best Man</h3><p>Miguel Andrew Guillermo</p></div>
+          <div class="role-block" data-aos="zoom-out-right" data-aos-delay="300"><h3>Maid of Honor</h3><p>Margareth Dionne Guillermo</p></div>
+        </div>
+
+        <div class="role-columns">
+          <div class="role-block" data-aos="zoom-out-left" data-aos-delay="200">
+            <h3>Groomsmen</h3>
+            <p>Charles Lawrence Gozo<br>Jude Sagum<br>Mark Anthony Hernandez<br>Nicky Bryan Rivera<br>Rieze Andrei</p>
+          </div>
+          <div class="role-block" data-aos="zoom-out-right" data-aos-delay="300">
+            <h3>Bridesmaids</h3>
+            <p>Anna Krisela Gozo<br>Ria Ianer Gozo<br>Aimee Soto<br>Cheska Gamo<br>Ely Mavel</p>
+          </div>
+        </div>
+
+        <h3 class="entourage__subheading" data-aos="fade-up" data-aos-delay="300">Our Little Entourage</h3>
+        <div class="role-columns">
+          <div class="role-block" data-aos="zoom-out-left" data-aos-delay="200">
+            <p>Carlito Antonio Gozo<br>Carlos Alonzo Gozo<br>JM Hernandez<br>Juan Sebastian Gozo</p>
+          </div>
+          <div class="role-block" data-aos="zoom-out-right" data-aos-delay="300">
+            <p>Jaden Torres<br>Chloe Torres<br>Sittie Lantud<br>Skylar Summer Gozo<br>Zoey Alessandria Gozo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ WISHES ============================ -->
+    <!-- Empty on purpose. Messages are read live from Supabase (or from the
+         browser while Supabase is not connected yet). -->
+    <section class="wishes" id="wishes" aria-labelledby="wishes-title">
+      <div class="wishes__background" aria-hidden="true"></div>
+      <div class="wishes__frame" aria-hidden="true"></div>
+      <div class="wishes__content">
+        <h2 id="wishes-title" class="sr-only">Wishes from our guests</h2>
+        <div class="wishes__scroll" id="wishes-list" aria-label="Messages from family and friends" aria-live="polite" data-aos="zoom-out-down">
+          <p class="wishes__status" id="wishes-status">Loading messages…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ RSVP ============================ -->
+    <section class="rsvp framed-section" id="rsvp" aria-labelledby="rsvp-title">
+      <div class="section-ornament section-ornament--top"><img src="assets/images/cover-horizontal-flowers.png" alt=""></div>
+      <div class="section-ornament section-ornament--bottom"><img src="assets/images/cover-horizontal-flowers.png" alt=""></div>
+      <div class="section-flower section-flower--top-left"><img src="assets/images/cover-trailing-flowers.png" alt=""></div>
+      <div class="section-flower section-flower--bottom-right"><img src="assets/images/cover-bouquet.png" alt=""></div>
+      <div class="section-flower section-flower--top-left-small"><img src="assets/images/cover-flower.png" alt=""></div>
+      <div class="section-flower section-flower--bottom-right-small"><img src="assets/images/cover-bow.png" alt=""></div>
+      <div class="rsvp__texture" aria-hidden="true"></div>
+
+      <div class="rsvp__content">
+        <h2 id="rsvp-title" data-aos="zoom-out-down">Wishes &amp; RSVP</h2>
+        <p class="rsvp__intro" data-aos="fade-up" data-aos-delay="150">
+          For family and friends, please confirm attendance below by
+          <strong>December 04, 2026</strong> and give a greeting for the bride and groom.<br><br>
+          Note: Strictly adult event only.
+        </p>
+
+        <!-- Shown only when the visitor opened a personal invitation link -->
+        <p class="rsvp__guest" id="rsvp-guest" data-aos="zoom-in" data-aos-delay="250" hidden></p>
+
+        <form id="rsvp-form" data-aos="zoom-out-up" data-aos-delay="300" novalidate>
+          <label for="guest-name">Name*</label>
+          <input id="guest-name" name="name" type="text" autocomplete="name" required>
+
+          <label for="attendance">Confirmation of Attendance*</label>
+          <select id="attendance" name="attendance" required>
+            <option value="">-- Option --</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+
+          <label for="pax">Number of Pax*</label>
+          <select id="pax" name="pax" disabled>
+            <option value="">-- Option --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+          <p class="rsvp__seats-note" id="rsvp-seats-note">
+            Trevor &amp; Marijomich have reserved <b>2 seats</b> for you.
+            If you are bringing more guests, please list the total number of pax above and let us know in the message.
+          </p>
+
+          <label for="guest-email">Email (optional)</label>
+          <input id="guest-email" name="email" type="email" autocomplete="email">
+
+          <label for="guest-diet">Dietary notes (optional)</label>
+          <input id="guest-diet" name="dietary" type="text" placeholder="e.g. vegetarian, no shellfish">
+
+          <label for="guest-wish">Wishes</label>
+          <textarea id="guest-wish" name="wish" rows="5" placeholder="Write a message for Trevor and Marijomich…"></textarea>
+
+          <button class="button button--submit" type="submit" disabled>Submit</button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================ CLOSING ============================ -->
+    <section class="closing" aria-label="Trevor and Marijomich, together forever">
+      <div class="closing__background" aria-hidden="true"></div>
+      <div class="closing__shade" aria-hidden="true"></div>
+      <div class="closing__content">
+        <p data-aos="zoom-out-up">
+          As we begin this new chapter, we are so thankful for the love and
+          support of the people around us. We would love to share this joy
+          with you in person. Your presence means everything to us.
+        </p>
+        <span data-aos="fade-up" data-aos-delay="200">With Love,</span>
+        <h2 data-aos="zoom-in-up" data-aos-delay="350" data-aos-easing="ease-out-back">Trevor &amp; Marijomich</h2>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p data-aos="fade-up">Trevor &amp; Marijomich &middot; 04 . 01 . 2027 &middot; Hacienda Solange Indang</p>
+    <p><a href="admin.html">Invitation admin</a></p>
+  </footer>
+
+  <!-- Music: the button appears only once a track is set in js/config.js -->
+  <button class="music-toggle" type="button" aria-label="Play music" aria-pressed="false" id="music-toggle" hidden>
+    <img src="assets/images/play-button.svg" alt="">
+    <span class="music-toggle__pause" aria-hidden="true">&#8545;</span>
+  </button>
+  <audio id="background-music" loop preload="none"></audio>
+  <iframe id="music-frame" class="music-frame" title="Background music" aria-hidden="true" allow="autoplay" tabindex="-1"></iframe>
+
+  <!-- ============================ LIGHTBOX ============================ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image" hidden>
+    <button class="lightbox__close" type="button" data-close-lightbox aria-label="Close image">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Previous image">&lsaquo;</button>
+    <img id="lightbox-image" alt="">
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Next image">&rsaquo;</button>
+    <p id="lightbox-caption"></p>
+  </div>
+
+  <!-- Order matters: config -> data layer -> animations -> page behaviour -->
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

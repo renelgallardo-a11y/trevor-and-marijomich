@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f3a26">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Invitation Admin | Trevor &amp; Marijomich</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+  <main class="admin-shell">
+    <header class="admin-header">
+      <div>
+        <p class="admin-kicker">Trevor &amp; Marijomich</p>
+        <h1>Invitation Admin</h1>
+      </div>
+      <a class="admin-preview-link" href="index.html">Open invitation preview</a>
+    </header>
+
+    <!-- ============================ SIGN IN ============================ -->
+    <section class="admin-card" id="login-view">
+      <div class="admin-card__heading">
+        <h2>Sign in</h2>
+        <p id="login-subtitle">Sign in to create personal invitation links, read the replies and manage the message wall.</p>
+      </div>
+      <form id="login-form" class="admin-form">
+        <label for="admin-username">Email</label>
+        <input id="admin-username" name="username" type="text" autocomplete="username" placeholder="you@example.com" required>
+        <label for="admin-password">Password</label>
+        <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+        <button class="button admin-button" type="submit">Sign in</button>
+      </form>
+      <p class="admin-message admin-message--error" id="login-error" role="alert" hidden></p>
+      <p class="admin-hint" id="login-hint" hidden></p>
+    </section>
+
+    <!-- ============================ DASHBOARD ============================ -->
+    <section class="admin-card" id="dashboard-view" hidden>
+      <div class="admin-card__heading admin-card__heading--row">
+        <div>
+          <h2>Dashboard</h2>
+          <p id="backend-note">Connected to Supabase.</p>
+        </div>
+        <button class="admin-text-button" id="logout-button" type="button">Sign out</button>
+      </div>
+
+      <ul class="admin-tabs" role="tablist">
+        <li role="presentation"><button type="button" role="tab" aria-selected="true" data-tab="invitations">Invitations</button></li>
+        <li role="presentation"><button type="button" role="tab" aria-selected="false" data-tab="rsvps">RSVPs</button></li>
+        <li role="presentation"><button type="button" role="tab" aria-selected="false" data-tab="wishes">Wishes</button></li>
+      </ul>
+
+      <!-- ---------------------- INVITATIONS ---------------------- -->
+      <div class="admin-panel" id="panel-invitations" role="tabpanel">
+        <div class="admin-card__heading admin-card__heading--row">
+          <div>
+            <h2>Create an invitation</h2>
+            <p>Enter the name exactly as it should appear on the personalised welcome page.</p>
+          </div>
+        </div>
+
+        <form id="create-form" class="admin-create-form">
+          <label for="invitee-name">Invited person's name</label>
+          <div class="admin-create-row">
+            <input id="invitee-name" name="name" type="text" maxlength="120" placeholder="e.g. Maria Santos" required>
+            <input id="invitee-seats" class="admin-seats" name="seats" type="number" min="1" max="20" value="2" aria-label="Seats reserved">
+            <button class="button admin-button" type="submit">Create link</button>
+          </div>
+          <label for="invitee-note">Note for this guest (optional)</label>
+          <div class="admin-create-row">
+            <input id="invitee-note" name="note" type="text" maxlength="200" placeholder="e.g. Please come early for the welcome dinner">
+          </div>
+          <p class="admin-hint">
+            Seats reserved for this guest &mdash; shown on the welcome screen and in their RSVP form.
+          </p>
+        </form>
+        <p class="admin-message" id="create-message" role="status" hidden></p>
+
+        <div class="admin-list-heading">
+          <h3>Your invitation links</h3>
+          <button class="admin-text-button" id="refresh-button" type="button">Refresh</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Invited person</th>
+                <th>Seats</th>
+                <th>Created</th>
+                <th>Status</th>
+                <th>Link</th>
+                <th><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="invitations-body"></tbody>
+          </table>
+          <p class="admin-empty" id="invitations-empty" hidden>No invitations yet. Create your first link above.</p>
+        </div>
+        <p class="admin-hint">
+          Guest links look like <code>your-site.github.io/invite/a1b2c3d4</code>.
+          They also work as <code>?token=a1b2c3d4</code> if you prefer.
+        </p>
+      </div>
+
+      <!-- ---------------------- RSVPS ---------------------- -->
+      <div class="admin-panel" id="panel-rsvps" role="tabpanel" hidden>
+        <div class="admin-card__heading admin-card__heading--row">
+          <div>
+            <h2>Replies</h2>
+            <p>Everyone who confirmed or declined, straight from the invitation.</p>
+          </div>
+          <button class="admin-text-button" id="export-rsvps" type="button">Download CSV</button>
+        </div>
+
+        <ul class="admin-stats" id="rsvp-stats"></ul>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Guest</th>
+                <th>Attending</th>
+                <th>Pax</th>
+                <th>Email</th>
+                <th>Dietary</th>
+                <th>Message</th>
+                <th>Replied</th>
+              </tr>
+            </thead>
+            <tbody id="rsvps-body"></tbody>
+          </table>
+          <p class="admin-empty" id="rsvps-empty" hidden>No replies yet.</p>
+        </div>
+      </div>
+
+      <!-- ---------------------- WISHES ---------------------- -->
+      <div class="admin-panel" id="panel-wishes" role="tabpanel" hidden>
+        <div class="admin-card__heading admin-card__heading--row">
+          <div>
+            <h2>Message wall</h2>
+            <p>Guests write these from the RSVP form. You can remove anything you do not want shown.</p>
+          </div>
+          <button class="admin-text-button" id="refresh-wishes" type="button">Refresh</button>
+        </div>
+        <div id="wishes-admin-list">
+          <p class="admin-loading">Loading messages…</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

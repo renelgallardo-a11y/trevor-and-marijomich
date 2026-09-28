@@ -1,0 +1,139 @@
+/* ==========================================================================
+   aos.css — scroll-triggered entrance animations
+   --------------------------------------------------------------------------
+   The reference invitation animates its content as it scrolls into view
+   using AOS-style effects. This file provides the same effect vocabulary
+   without loading an external library, so the page keeps working offline and
+   adds no third-party dependency.
+
+   Markup
+     <div data-aos="zoom-out-up"
+          data-aos-delay="200"
+          data-aos-duration="1200"
+          data-aos-offset="120"
+          data-aos-once="true"
+          data-aos-easing="ease-out-back">
+     ...
+     </div>
+
+   Every attribute is optional except data-aos. Defaults match the
+   reference: duration 1200ms, easing ease-in-out-cubic, offset 120px,
+   and the element animates once and stays put.
+   ========================================================================== */
+
+[data-aos] {
+  transition-property: opacity, transform;
+  transition-duration: var(--aos-duration, 1200ms);
+  transition-delay: var(--aos-delay, 0ms);
+  transition-timing-function: var(--aos-easing, cubic-bezier(.455, .03, .515, .955));
+  will-change: opacity, transform;
+}
+
+/* The class the observer adds when the element scrolls into view.
+   Every effect animates back to this neutral state. */
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: translateZ(0) scale(1);
+}
+
+/* ---------------------------------------------------------------- *
+ * fade — a straight move with no scaling
+ * ---------------------------------------------------------------- */
+[data-aos^="fade"] {
+  opacity: 0;
+}
+
+[data-aos^="fade"].aos-animate {
+  opacity: 1;
+  transform: translateZ(0);
+}
+
+[data-aos="fade-up"]    { transform: translate3d(0, 100px, 0); }
+[data-aos="fade-down"]  { transform: translate3d(0, -100px, 0); }
+[data-aos="fade-left"]  { transform: translate3d(100px, 0, 0); }
+[data-aos="fade-right"] { transform: translate3d(-100px, 0, 0); }
+
+/* ---------------------------------------------------------------- *
+ * zoom-in — the element grows into place
+ * ---------------------------------------------------------------- */
+[data-aos^="zoom-in"] {
+  opacity: 0;
+}
+
+[data-aos="zoom-in"]      { transform: scale(.6); }
+[data-aos="zoom-in-up"]   { transform: translate3d(0, 100px, 0) scale(.6); }
+[data-aos="zoom-in-down"] { transform: translate3d(0, -100px, 0) scale(.6); }
+[data-aos="zoom-in-left"] { transform: translate3d(100px, 0, 0) scale(.6); }
+[data-aos="zoom-in-right"]{ transform: translate3d(-100px, 0, 0) scale(.6); }
+
+/* ---------------------------------------------------------------- *
+ * zoom-out — the element shrinks into place
+ * ---------------------------------------------------------------- */
+[data-aos^="zoom-out"] {
+  opacity: 0;
+}
+
+[data-aos="zoom-out"]      { transform: scale(1.2); }
+[data-aos="zoom-out-up"]   { transform: translate3d(0, 100px, 0) scale(1.2); }
+[data-aos="zoom-out-down"] { transform: translate3d(0, -100px, 0) scale(1.2); }
+[data-aos="zoom-out-left"] { transform: translate3d(100px, 0, 0) scale(1.2); }
+[data-aos="zoom-out-right"]{ transform: translate3d(-100px, 0, 0) scale(1.2); }
+
+/* ---------------------------------------------------------------- *
+ * slide — no fade, pure movement
+ * ---------------------------------------------------------------- */
+[data-aos^="slide"] {
+  transition-property: transform;
+}
+
+[data-aos="slide-up"]    { transform: translate3d(0, 100%, 0); }
+[data-aos="slide-down"]  { transform: translate3d(0, -100%, 0); }
+[data-aos="slide-left"]  { transform: translate3d(100%, 0, 0); }
+[data-aos="slide-right"] { transform: translate3d(-100%, 0, 0); }
+
+/* ---------------------------------------------------------------- *
+ * flip — a 3D rotation
+ * ---------------------------------------------------------------- */
+[data-aos^="flip"] {
+  backface-visibility: hidden;
+  transition-property: transform;
+}
+
+[data-aos="flip-up"]    { transform: perspective(2500px) rotateX(-100deg); }
+[data-aos="flip-down"]  { transform: perspective(2500px) rotateX(100deg); }
+[data-aos="flip-left"]  { transform: perspective(2500px) rotateY(-100deg); }
+[data-aos="flip-right"] { transform: perspective(2500px) rotateY(100deg); }
+
+[data-aos^="flip"].aos-animate {
+  transform: perspective(2500px) rotateX(0) rotateY(0);
+}
+
+/* ---------------------------------------------------------------- *
+ * Easing choices (the reference leans on the cubic default; the
+ * "back" curves give the entrance a small overshoot)
+ * ---------------------------------------------------------------- */
+[data-aos-easing="linear"]        { --aos-easing: cubic-bezier(.25, .25, .75, .75); }
+[data-aos-easing="ease"]          { --aos-easing: ease; }
+[data-aos-easing="ease-in"]       { --aos-easing: ease-in; }
+[data-aos-easing="ease-out"]      { --aos-easing: ease-out; }
+[data-aos-easing="ease-in-out"]   { --aos-easing: ease-in-out; }
+[data-aos-easing="linear-out"]    { --aos-easing: cubic-bezier(0, 0, .2, 1); }
+[data-aos-easing="ease-out-back"] { --aos-easing: cubic-bezier(.175, .885, .32, 1.275); }
+[data-aos-easing="ease-in-out-back" { --aos-easing: cubic-bezier(.68, -.55, .265, 1.55); }
+[data-aos-easing="ease-out-sine"  { --aos-easing: cubic-bezier(.39, .575, .565, 1); }
+[data-aos-easing="ease-in-out-sine" { --aos-easing: cubic-bezier(.445, .05, .55, .95); }
+[data-aos-easing="ease-out-quad"  { --aos-easing: cubic-bezier(.25, .46, .45, .94); }
+[data-aos-easing="ease-out-cubic"] { --aos-easing: cubic-bezier(.215, .61, .355, 1); }
+[data-aos-easing="ease-in-out-cubic"] { --aos-easing: cubic-bezier(.455, .03, .515, .955); }
+
+/* ---------------------------------------------------------------- *
+ * People who ask their system for less motion get the final state
+ * immediately — no animation, no delay.
+ * ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

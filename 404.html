@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trevor &amp; Marijomich</title>
+<link rel="canonical" href="/">
+<meta http-equiv="refresh" content="0; url=./">
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    background: #2f3a26;
+    color: #eef0e6;
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+  p { font-size: 15px; letter-spacing: .04em; opacity: .8; }
+  a { color: #eef0e6; }
+</style>
+</head>
+<body>
+<p>Taking you to the invitation…</p>
+<script>
+  /* GitHub Pages has no real rewrites, so /invite/<token> lands here.
+     We move the token into the query string and hand over to index.html,
+     which then loads the right guest name. The address bar is cleaned up
+     so the guest never sees the token twice. */
+  (function () {
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    var token = '';
+    var inviteIndex = parts.indexOf('invite');
+    if (inviteIndex !== -1 && parts[inviteIndex + 1]) token = parts[inviteIndex + 1];
+
+    var target = './' + (token ? '?token=' + encodeURIComponent(token) : '');
+    window.location.replace(target);
+  }());
+</script>
+</body>
+</html>

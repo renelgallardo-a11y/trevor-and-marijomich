@@ -1,0 +1,72 @@
+# ---------------------------------------------------------------------------
+#  Files that must never be committed
+# ---------------------------------------------------------------------------
+
+# Real credentials. js/config.js is committed on purpose with EMPTY values so
+# it works as a template — but if you ever create a .env here, keep it local.
+.env
+.env.*
+!.env.example
+
+# Supabase service role key — this one must never reach GitHub.
+*service_role*
+service-role*
+
+# Private keys
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# ---------------------------------------------------------------------------
+#  Operating system cruft
+# ---------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ---------------------------------------------------------------------------
+#  Editors and tools
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.\#*
+\#*\#
+
+# ---------------------------------------------------------------------------
+#  Build / dependency / log output
+# ---------------------------------------------------------------------------
+node_modules/
+dist/
+build/
+.cache/
+*.log
+npm-debug.log*
+yarn-error.log*
+*.tsbuildinfo
+
+# ---------------------------------------------------------------------------
+#  Local scratch space
+# ---------------------------------------------------------------------------
+tmp/
+temp/
+scratch/
+screenshot*.png
+shot-*.png
+*-check.js
+*.local
