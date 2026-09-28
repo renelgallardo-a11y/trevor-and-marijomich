@@ -22,14 +22,15 @@ window.SITE_CONFIG = {
        a. Go to https://supabase.com and create a free project.
        b. Open  Project Settings  ->  API.
        c. Copy the "Project URL" into supabaseUrl.
-       d. Copy the "anon public" key into supabaseAnonKey.
-          (NEVER paste the service_role key here. It must stay secret.)
+       d. Copy the "publishable" key into supabaseAnonKey.
+          (NEVER paste the secret key here. It bypasses every security rule
+           and must stay on a server.)
 
      While these two values are empty the site still works: everything is
      kept in the visitor's own browser so you can test the whole flow.
      ---------------------------------------------------------------------- */
-  supabaseUrl: '',
-  supabaseAnonKey: '',
+  supabaseUrl: 'https://degwjalfzpxcbwqrrghj.supabase.co',
+  supabaseAnonKey: 'sb_publishable_B3zhLEerGybiGaHdsC0QWg_E600wvHW',
 
   /* ----------------------------------------------------------------------
      2) OPTIONAL EXTRAS
