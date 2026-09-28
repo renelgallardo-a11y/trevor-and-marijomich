@@ -1,7 +1,7 @@
 /* ==========================================================================
    script.js — Trevor & Marijomich invitation
    Page behaviour: welcome screen, personalisation, countdown, gallery,
-   wishes wall, RSVP (Supabase + Google Sheet) and background music.
+   wishes wall, RSVP and background music.
    ========================================================================== */
 
 document.documentElement.classList.add('js');
@@ -367,27 +367,17 @@ if (rsvpForm) {
     const originalLabel = rsvpSubmit.textContent;
     rsvpSubmit.textContent = 'Sending…';
 
-    const saved = [];
+    let savedReply = false;
 
-    /* a) Save the reply (Supabase when connected, browser otherwise) */
+    /* a) Save the reply to Supabase, which is what the admin page reads */
     try {
       await STORE.addRsvp(record);
-      saved.push('rsvp');
+      savedReply = true;
     } catch (error) {
-      /* keep going: the Google Sheet may still receive it */
+      /* nothing else to fall back on, so the guest is told below */
     }
 
-    /* b) Send the same reply to the Google Sheet */
-    if (CONFIG.googleAppsScriptUrl) {
-      try {
-        await STORE.sendRsvpToGoogleSheet(record);
-        saved.push('sheet');
-      } catch (error) {
-        showFormMessage('Your reply was saved, but the Google Sheet could not be reached. Please contact the couple.', true);
-      }
-    }
-
-    /* c) Post the greeting on the wishes wall */
+    /* b) Post the greeting on the wishes wall */
     if (record.message) {
       try {
         const wish = await STORE.addWish({
@@ -401,8 +391,8 @@ if (rsvpForm) {
       } catch (error) { /* the RSVP itself still counts */ }
     }
 
-    if (!saved.length) {
-      showFormMessage('Sorry, something went wrong. Please try again in a moment.', true);
+    if (!savedReply) {
+      showFormMessage('Sorry, something went wrong and your reply was not saved. Please try again in a moment.', true);
       rsvpSubmit.textContent = originalLabel;
       rsvpIsValid();
       return;
@@ -410,7 +400,7 @@ if (rsvpForm) {
 
     showFormMessage(
       record.attendance === 'Yes'
-        ? 'Thank you! Your RSVP has been received' + (saved.includes('sheet') ? ' and recorded in our sheet.' : '.') + ' We cannot wait to celebrate with you.'
+        ? 'Thank you! Your RSVP has been received. We cannot wait to celebrate with you.'
         : 'Thank you for letting us know. We will miss you, and we are grateful you answered.',
       false
     );

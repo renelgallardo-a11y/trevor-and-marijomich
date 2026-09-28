@@ -381,33 +381,6 @@
       return saved;
     },
 
-    /* Sends the reply to the Google Sheet behind an Apps Script web app.
-       Sent as text/plain on purpose: that content type never triggers a
-       CORS pre-flight, which Apps Script cannot answer. */
-    async sendRsvpToGoogleSheet(record) {
-      const endpoint = config.googleAppsScriptUrl;
-      if (!endpoint) return { skipped: true };
-
-      const payload = {
-        timestamp: new Date().toISOString(),
-        name: record.name,
-        email: record.email || '',
-        attendance: record.attendance,
-        pax: record.attendance === 'Yes' ? String(record.pax || 1) : '0',
-        dietary: record.dietary || '',
-        message: record.message || '',
-        invitationToken: record.token || ''
-      };
-
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-        body: JSON.stringify(payload)
-      });
-      return { skipped: false, status: response.status, type: response.type };
-    },
-
     /* ---------------- admin authentication ---------------- */
 
     async currentUser() {
